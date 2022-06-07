@@ -105,7 +105,7 @@
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://52.207.213.183:7767/cwanjitechnologies/repository/walmart-snapshot/></url>
+	      <url>http://52.207.213.183:7767/cwanjitechnologies/repository/walmart-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
