@@ -4,6 +4,11 @@ def mavenHome = tool name: "maven3.8.5"
 
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([githubPush()])])
 
+echo "Job name is:" ${env.JOB_NAME}
+echo "Node name is:" ${env.NODE_NAME}
+echo "Build number is:" ${env.BUILD_NUMBER}
+
+
 stage('checkout code')
 {
 git branch: 'development', credentialsId: '9852c981-0468-4926-8add-30d642b28233', url: 'https://github.com/cwanji5/maven-web-application.git'
