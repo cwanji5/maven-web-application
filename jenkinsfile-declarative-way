@@ -24,6 +24,7 @@ stages{
     
         //Checkout Code Stage
         stage('CheckoutCode')
+        {
         steps{
         sendSlackNotifications('STARTED')
         git branch: 'development', credentialsId: '9852c981-0468-4926-8add-30d642b28233', url: 'https://github.com/cwanji5/maven-web-application.git' 
