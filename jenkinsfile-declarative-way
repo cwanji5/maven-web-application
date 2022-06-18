@@ -21,6 +21,7 @@ options {
 stages{
     
     stages{
+    
         //Checkout Code Stage
         stage('CheckoutCode')
         steps{
@@ -103,3 +104,5 @@ def sendSlackNotifications(String buildStatus = 'STARTED') {
 
   // Send notifications
   slackSend (color: colorCode, message: summary, channel: 'walmart')
+  }
+ 
