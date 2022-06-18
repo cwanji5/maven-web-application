@@ -100,4 +100,5 @@ def sendSlackNotifications(String buildStatus = 'STARTED') {
 
   // Send notifications
   slackSend (color: colorCode, message: summary, channel: 'walmart')
+  slackSend channel: '#walmart', teamDomain: 'cwanji-technologies', tokenCredentialId: '1a3cb33a-28f5-48a8-be97-4940ca191b56'
 }
