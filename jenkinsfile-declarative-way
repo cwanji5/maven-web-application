@@ -64,7 +64,8 @@ stages{
         }    
      }
 
-}//Stages closing
+ //Stages closing
+//pipeline closing
 
 post {
   success {
@@ -76,8 +77,6 @@ post {
 }
 
 }
-//Pipeline closing
-
 
 def sendSlackNotifications(String buildStatus = 'STARTED') {
   
