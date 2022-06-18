@@ -1,0 +1,59 @@
+pipeline
+{
+    agent any
+    
+    tools{
+        maven "maven3.8.5"
+    }
+    
+   triggers {
+  pollSCM '* * * * *'
+}
+    
+    stages{
+        //Checkout Code Stage
+        stage('CheckoutCode')
+        {
+        steps{
+           git branch: 'development', credentialsId: '9852c981-0468-4926-8add-30d642b28233', url: 'https://github.com/cwanji5/maven-web-application.git' 
+        }   
+    }
+    
+        //Build Stage
+        stage('Build')
+        {
+        steps{
+           sh "mvn clean package"
+        }
+    }
+    
+    
+        //Execute SonarQube Report
+        stage('ExecuteSonarQubeReport')
+        {
+        steps{
+            sh "mvn sonar:sonar"    
+        }            
+        }
+        
+        //Upload artifacts into Artiactory repo
+        stage('UploadIntoNexus')
+        {
+        steps{
+            sh "mvn deploy"
+        }
+        }
+        
+        stage('DeployingIntoTomcat')
+        {
+        steps{
+            sshagent(['b1020ded-858e-4260-a507-f1c2d414e0ef']) {
+            sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.94.95.125:/opt/apache-tomcat-9.0.64/webapps"
+            }
+        }    
+        }
+  }
+}
+
+//Stages closing
+//pipeline closing
