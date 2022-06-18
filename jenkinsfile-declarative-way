@@ -64,8 +64,7 @@ stages{
         }    
      }
 
- //Stages closing
-//pipeline closing
+ }//Stages closing
 
 post {
   success {
@@ -76,10 +75,14 @@ post {
   }
 }
 
+}//Pipeline closing
+
+
+
+
 def sendSlackNotifications(String buildStatus = 'STARTED') {
   
   buildStatus =  buildStatus ?: 'SUCCESS'
-  }
 
   // Default values
   def colorName = 'RED'
