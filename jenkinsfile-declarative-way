@@ -75,9 +75,8 @@ post {
   }
 }
 
-}//Pipeline closing
-
-//Below code will use for send slack build notifications
+}
+//Pipeline closing
 
 
 def sendSlackNotifications(String buildStatus = 'STARTED') {
