@@ -82,6 +82,7 @@ stages{
 def sendSlackNotifications(String buildStatus = 'STARTED') {
   
   buildStatus =  buildStatus ?: 'SUCCESS'
+  }
 
   // Default values
   def colorName = 'RED'
