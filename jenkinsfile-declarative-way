@@ -76,8 +76,6 @@ post {
   }
 }
 
-}
-
 def sendSlackNotifications(String buildStatus = 'STARTED') {
   
   buildStatus =  buildStatus ?: 'SUCCESS'
