@@ -1,5 +1,6 @@
 pipeline
 {
+    
     agent any
     
     tools{
@@ -18,21 +19,12 @@ options {
 }
 
 stages{
-
- //Checkout COde stage
- stage('CheckoutCode')
- {
- steps{
- sendSlackNotifications('STARTED')
- git branch: 'development', credentialsId: 'f5708724-a441-46f4-8f75-3757193ad3f4', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git' 
- }
-}
     
     stages{
         //Checkout Code Stage
         stage('CheckoutCode')
-        {
         steps{
+        sendSlackNotifications('STARTED'
            git branch: 'development', credentialsId: '9852c981-0468-4926-8add-30d642b28233', url: 'https://github.com/cwanji5/maven-web-application.git' 
         }   
     }
@@ -45,8 +37,7 @@ stages{
         }
     }
     
-    
-        //Execute SonarQube Report
+    //Execute SonarQube Report
         stage('ExecuteSonarQubeReport')
         {
         steps{
@@ -69,12 +60,22 @@ stages{
             sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.94.95.125:/opt/apache-tomcat-9.0.64/webapps"
             }
         }    
-        }
+     }
+   }
+
+//Stages closing
+
+post {
+  success {
+    sendSlackNotifications('SUCCESS')
+  }
+  failure {
+   sendSlackNotifications('FAILURE')
   }
 }
 
-//Stages closing
-//pipeline closing
+}//Pipeline closing
+
 
 
 
@@ -104,5 +105,4 @@ def sendSlackNotifications(String buildStatus = 'STARTED') {
 
   // Send notifications
   slackSend (color: colorCode, message: summary, channel: 'walmart')
-}
 }
