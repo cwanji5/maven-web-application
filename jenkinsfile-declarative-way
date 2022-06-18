@@ -61,9 +61,8 @@ stages{
             }
         }    
      }
-   }
 
-//Stages closing
+}//Stages closing
 
 post {
   success {
